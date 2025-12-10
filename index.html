@@ -6,105 +6,285 @@
     <title>Nexus | Launching Soon</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* [Keep all previous CSS styles exactly as they were] */
-        /* All the :root, body, container, header, hero styles remain unchanged */
+        :root {
+            --neon-blue: #0ff0fc;
+            --neon-cyan: #00f7ff;
+            --dark-bg: #0a0a16;
+            --darker-bg: #070711;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--dark-bg);
+            color: #eee;
+            min-height: 100vh;
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(10, 247, 255, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(0, 247, 255, 0.03) 0%, transparent 20%);
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(0, 247, 255, 0.2);
+        }
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--neon-cyan), #fff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(0, 247, 255, 0.5);
+        }
+        .tagline {
+            font-size: 1.1rem;
+            color: #a0a0ff;
+            letter-spacing: 3px;
+            margin-top: 0.5rem;
+        }
+        .hero {
+            text-align: center;
+            padding: 6rem 1rem;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #fff, var(--neon-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.1;
+        }
+        .hero p {
+            font-size: 1.4rem;
+            color: #b0b0ff;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+        }
+        .launch-text {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--glass-bg);
+            border: 1px solid rgba(0, 247, 255, 0.3);
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            color: var(--neon-cyan);
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 4rem;
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.2);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 247, 255, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(0, 247, 255, 0.5); }
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 5rem 0 3rem;
+            color: #fff;
+            position: relative;
+        }
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+            margin: 15px auto;
+        }
         
-        /* Updated contact cards styling */
+        /* Futuristic Contact Cards */
         .contact-cards {
             display: flex;
             flex-wrap: wrap;
-            gap: 2rem;
+            gap: 3rem;
             justify-content: center;
             margin-bottom: 5rem;
         }
-        
         .contact-card {
+            flex: 1;
+            min-width: 350px;
             background: var(--glass-bg);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 25px;
             padding: 3rem;
-            backdrop-filter: blur(10px);
-            text-align: center;
-            min-width: 300px;
-            flex: 1;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(15px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
         }
-        
+        .contact-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 247, 255, 0.1), transparent);
+            transition: 0.5s;
+        }
+        .contact-card:hover:before {
+            left: 100%;
+        }
         .contact-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 247, 255, 0.2);
+            transform: translateY(-15px);
             border-color: var(--neon-cyan);
+            box-shadow: 0 20px 40px rgba(0, 247, 255, 0.15),
+                        inset 0 0 20px rgba(0, 247, 255, 0.05);
         }
-        
-        .contact-icon-large {
-            font-size: 4rem;
+        .card-icon {
+            font-size: 3.5rem;
             color: var(--neon-cyan);
             margin-bottom: 2rem;
-            text-shadow: 0 0 20px rgba(0, 247, 255, 0.5);
+            text-shadow: 0 0 20px rgba(0, 247, 255, 0.7);
+            text-align: center;
         }
-        
         .contact-card h3 {
             font-size: 1.8rem;
             margin-bottom: 1.5rem;
             color: #fff;
+            text-align: center;
+            letter-spacing: 1px;
         }
-        
         .contact-card p {
             color: #b0b0ff;
             line-height: 1.7;
-            margin-bottom: 2.5rem;
-            min-height: 60px;
-        }
-        
-        .contact-detail {
-            display: inline-block;
-            background: rgba(10, 10, 30, 0.7);
-            border: 1px solid rgba(0, 247, 255, 0.3);
-            border-radius: 15px;
-            padding: 1rem 2rem;
-            color: var(--neon-cyan);
-            font-family: monospace;
-            font-size: 1.1rem;
             margin-bottom: 2rem;
-            word-break: break-all;
+            text-align: center;
+            min-height: 80px;
         }
-        
-        .contact-btn {
-            display: inline-block;
+        .contact-info {
+            background: rgba(10, 10, 30, 0.6);
+            border: 1px solid rgba(0, 247, 255, 0.2);
+            border-radius: 15px;
+            padding: 1.2rem;
+            margin: 2rem 0;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            color: var(--neon-cyan);
+            letter-spacing: 1px;
+            word-break: break-all;
+            position: relative;
+        }
+        .contact-info:before {
+            content: '▶';
+            position: absolute;
+            left: 15px;
+            color: var(--neon-blue);
+            animation: blink 1.5s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        .action-btn {
+            display: block;
+            width: 100%;
             background: linear-gradient(90deg, var(--neon-blue), var(--neon-cyan));
             color: var(--darker-bg);
             border: none;
-            padding: 1.1rem 2.5rem;
+            padding: 1.2rem;
             font-size: 1.1rem;
             font-weight: 700;
             border-radius: 12px;
             cursor: pointer;
             text-decoration: none;
-            letter-spacing: 1px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            width: 100%;
+            text-align: center;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 247, 255, 0.3);
         }
-        
-        .contact-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 7px 20px rgba(0, 247, 255, 0.4);
-            color: var(--darker-bg);
+        .action-btn:after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(30deg);
+            transition: 0.5s;
         }
-        
-        .contact-btn i {
+        .action-btn:hover:after {
+            left: 120%;
+        }
+        .action-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 247, 255, 0.5);
+        }
+        .action-btn i {
             margin-right: 10px;
         }
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #888;
+            font-size: 0.9rem;
+        }
         
+        /* Telegram Widget Styling */
+        #telegram-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 10000;
+        }
+        .tg-chat-bubble {
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-cyan));
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 247, 255, 0.6);
+            transition: all 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+            text-decoration: none;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .tg-chat-bubble:hover {
+            transform: scale(1.15) translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 247, 255, 0.9);
+        }
+        .tg-chat-bubble i {
+            font-size: 2rem;
+            color: #0a0a16;
+        }
+        
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .contact-cards {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .contact-card {
-                width: 100%;
-                max-width: 400px;
-            }
+            .hero h1 { font-size: 2.8rem; }
+            .hero p { font-size: 1.1rem; padding: 0 1rem; }
+            .contact-cards { flex-direction: column; gap: 2rem; }
+            .contact-card { min-width: 100%; padding: 2rem; }
+            .section-title { font-size: 2rem; }
+            #telegram-widget { bottom: 20px; right: 20px; }
+            .tg-chat-bubble { width: 60px; height: 60px; }
         }
     </style>
 </head>
@@ -126,30 +306,30 @@
 
         <h2 class="section-title">Connect With One Click</h2>
 
-        <!-- Direct Contact Cards -->
+        <!-- Futuristic Contact Cards -->
         <div class="contact-cards">
             <!-- Email Card -->
             <div class="contact-card">
-                <div class="contact-icon-large">
+                <div class="card-icon">
                     <i class="fas fa-envelope"></i>
                 </div>
-                <h3>Email Us Directly</h3>
-                <p>Click to send an email instantly using your default email client. Perfect for detailed inquiries.</p>
-                <div class="contact-detail">email@silnk.com</div>
-                <a href="mailto:email@silnk.com?subject=Inquiry from Nexus Website&body=Hello Nexus Team," class="contact-btn">
+                <h3>Instant Email</h3>
+                <p>Click to compose an email directly in your default mail client. Perfect for detailed inquiries and formal communication.</p>
+                <div class="contact-info">email@silnk.com</div>
+                <a href="mailto:email@silnk.com?subject=Inquiry%20from%20Nexus%20Website&body=Hello%20Nexus%20Team," class="action-btn">
                     <i class="fas fa-paper-plane"></i> SEND EMAIL NOW
                 </a>
             </div>
 
             <!-- Telegram Card -->
             <div class="contact-card">
-                <div class="contact-icon-large">
+                <div class="card-icon">
                     <i class="fab fa-telegram-plane"></i>
                 </div>
-                <h3>Chat on Telegram</h3>
-                <p>Connect instantly via Telegram for real-time conversation. Click to start chatting immediately.</p>
-                <div class="contact-detail">@ih7kh</div>
-                <a href="https://t.me/ih7kh" target="_blank" class="contact-btn">
+                <h3>Direct Telegram Chat</h3>
+                <p>Start a real-time conversation instantly. Connect directly via Telegram for quick questions and instant responses.</p>
+                <div class="contact-info">@ih7kh</div>
+                <a href="https://t.me/ih7kh" target="_blank" class="action-btn">
                     <i class="fab fa-telegram-plane"></i> START TELEGRAM CHAT
                 </a>
             </div>
@@ -160,7 +340,7 @@
         </footer>
     </div>
 
-    <!-- Simplified Telegram Floating Button -->
+    <!-- Floating Telegram Bubble -->
     <div id="telegram-widget">
         <a href="https://t.me/ih7kh" target="_blank" class="tg-chat-bubble" title="Chat with us on Telegram!">
             <i class="fab fa-telegram-plane"></i>
@@ -168,29 +348,32 @@
     </div>
 
     <script>
-        // Simple hover effect for contact cards
+        // Enhanced hover effects
         document.querySelectorAll('.contact-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px)';
-                this.style.boxShadow = '0 15px 35px rgba(0, 247, 255, 0.2)';
-                this.style.borderColor = 'var(--neon-cyan)';
+                const icon = this.querySelector('.card-icon');
+                icon.style.transform = 'scale(1.2) rotate(5deg)';
+                icon.style.transition = 'transform 0.4s ease';
             });
             
             card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = 'none';
-                this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                const icon = this.querySelector('.card-icon');
+                icon.style.transform = 'scale(1) rotate(0deg)';
             });
         });
 
-        // Animation for the Telegram bubble
-        const tgBubble = document.querySelector('.tg-chat-bubble');
-        setInterval(() => {
-            tgBubble.style.transform = 'translateY(-5px)';
-            setTimeout(() => {
-                tgBubble.style.transform = 'translateY(0)';
-            }, 500);
-        }, 3000);
+        // Glitch effect on contact info
+        const contactInfos = document.querySelectorAll('.contact-info');
+        contactInfos.forEach(info => {
+            setInterval(() => {
+                if (Math.random() > 0.95) {
+                    info.style.opacity = '0.7';
+                    setTimeout(() => {
+                        info.style.opacity = '1';
+                    }, 100);
+                }
+            }, 2000);
+        });
     </script>
 </body>
 </html>
