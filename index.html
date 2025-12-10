@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus | Launching Soon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --neon-blue: #0ff0fc;
+            --neon-cyan: #00f7ff;
+            --dark-bg: #0a0a16;
+            --darker-bg: #070711;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--dark-bg);
+            color: #eee;
+            min-height: 100vh;
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(10, 247, 255, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(0, 247, 255, 0.03) 0%, transparent 20%);
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(0, 247, 255, 0.2);
+        }
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--neon-cyan), #fff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(0, 247, 255, 0.5);
+        }
+        .tagline {
+            font-size: 1.1rem;
+            color: #a0a0ff;
+            letter-spacing: 3px;
+            margin-top: 0.5rem;
+        }
+        .hero {
+            text-align: center;
+            padding: 6rem 1rem;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #fff, var(--neon-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.1;
+        }
+        .hero p {
+            font-size: 1.4rem;
+            color: #b0b0ff;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+        }
+        .launch-text {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--glass-bg);
+            border: 1px solid rgba(0, 247, 255, 0.3);
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            color: var(--neon-cyan);
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 4rem;
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.2);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 247, 255, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(0, 247, 255, 0.5); }
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 5rem 0 3rem;
+            color: #fff;
+            position: relative;
+        }
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+            margin: 15px auto;
+        }
+        .contact-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4rem;
+            align-items: flex-start;
+            justify-content: center;
+            background: var(--glass-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 3rem;
+            backdrop-filter: blur(10px);
+            margin-bottom: 5rem;
+        }
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--neon-cyan);
+        }
+        .contact-info p {
+            color: #b0b0ff;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+        .contact-icon {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            color: #ccc;
+        }
+        .contact-icon i {
+            font-size: 1.5rem;
+            color: var(--neon-cyan);
+            margin-right: 1rem;
+            width: 30px;
+        }
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.7rem;
+            color: #ddd;
+            font-weight: 500;
+        }
+        .form-control {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            background: rgba(10, 10, 30, 0.7);
+            border: 1px solid rgba(0, 247, 255, 0.3);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
+        }
+        .submit-btn {
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-cyan));
+            color: var(--darker-bg);
+            border: none;
+            padding: 1.1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+            letter-spacing: 1px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(0, 247, 255, 0.4);
+        }
+        .status-message {
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            text-align: center;
+            display: none;
+        }
+        .success { background: rgba(0, 255, 136, 0.1); color: #00ff88; border: 1px solid #00ff88; }
+        .error { background: rgba(255, 50, 50, 0.1); color: #ff5555; border: 1px solid #ff5555; }
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #888;
+            font-size: 0.9rem;
+        }
+        /* Telegram Widget Styling */
+        #telegram-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 10000;
+        }
+        #telegram-widget iframe {
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--neon-cyan) !important;
+        }
+        .tg-chat-bubble {
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-cyan));
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 247, 255, 0.6);
+            transition: all 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .tg-chat-bubble:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 247, 255, 0.9);
+        }
+        .tg-chat-bubble i {
+            font-size: 2rem;
+            color: #0a0a16;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .hero p { font-size: 1.1rem; padding: 0 1rem; }
+            .contact-wrapper { padding: 2rem; gap: 2rem; }
+            .section-title { font-size: 2rem; }
+            #telegram-widget { bottom: 20px; right: 20px; }
+            .tg-chat-bubble { width: 60px; height: 60px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div>
+                <div class="logo">NEXUS</div>
+                <div class="tagline">THE NEXT INTERFACE</div>
+            </div>
+            <div class="launch-text">LAUNCHING SOON</div>
+        </header>
+
+        <section class="hero">
+            <h1>Redefining The Future of Digital Interaction</h1>
+            <p>We're building something extraordinary. A seamless fusion of AI, immersive design, and intuitive functionality. Get ready for the launch.</p>
+            <div class="launch-text">STAY CONNECTED FOR THE REVEAL</div>
+        </section>
+
+        <h2 class="section-title">Get In Touch</h2>
+
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h3>Connect With Our Future</h3>
+                <p>Have questions about the launch? Want to explore early partnership opportunities? Send us a message directly or chat with us instantly on Telegram.</p>
+
+                <div class="contact-icon">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Email directly to our launch team. We respond within 24 hours.</span>
+                </div>
+                <div class="contact-icon">
+                    <i class="fas fa-bolt"></i>
+                    <span>For instant, real-time conversation, click the Telegram chat bubble.</span>
+                </div>
+                <div class="contact-icon">
+                    <i class="fas fa-globe"></i>
+                    <span>Join our community of pioneers awaiting the new digital frontier.</span>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <!-- Web3Forms Contact Form -->
+                <form action="https://api.web3forms.com/submit" method="POST" id="email-form">
+                    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE"> <!-- REPLACE THIS -->
+                    <input type="hidden" name="subject" value="New Message from Nexus Launch Site">
+                    <input type="hidden" name="from_name" value="Nexus Website">
+                    <input type="checkbox" name="botcheck" style="display: none;">
+
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="you@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" class="form-control" rows="5" placeholder="What's on your mind about the future?" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> SEND MESSAGE
+                    </button>
+                </form>
+                <div id="form-status" class="status-message"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2025 NEXUS. All rights reserved. | This is the future, under construction.</p>
+            <p style="margin-top: 10px; font-size: 0.8em; color: #666;">Contact form powered by <a href="https://web3forms.com" style="color: var(--neon-cyan);" target="_blank">Web3Forms</a></p>
+        </footer>
+    </div>
+
+    <!-- Telegram Chat Widget - Floating Bubble -->
+    <div id="telegram-widget">
+        <div class="tg-chat-bubble" id="tg-bubble" title="Chat with us on Telegram!">
+            <i class="fab fa-telegram-plane"></i>
+        </div>
+        <iframe id="tg-chat-frame" style="display: none; width: 380px; height: 550px;" allow="microphone;" frameborder="0"></iframe>
+    </div>
+
+    <script>
+        // Form Submission Handler (Web3Forms)
+        const form = document.getElementById('email-form');
+        const formStatus = document.getElementById('form-status');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+
+            // Show loading state
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SENDING...';
+            submitBtn.disabled = true;
+
+            // Get form data
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    formStatus.textContent = "Message sent successfully! We'll be in touch soon.";
+                    formStatus.className = 'status-message success';
+                    formStatus.style.display = 'block';
+                    form.reset();
+                } else {
+                    throw new Error(result.message || 'Form submission failed.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                formStatus.textContent = `Oops! Something went wrong. Please try again or use Telegram.`;
+                formStatus.className = 'status-message error';
+                formStatus.style.display = 'block';
+            } finally {
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+                setTimeout(() => { formStatus.style.display = 'none'; }, 7000);
+            }
+        });
+
+        // Telegram Chat Widget Toggle (Open Source Widget from GitHub)
+        const tgBubble = document.getElementById('tg-bubble');
+        const tgFrame = document.getElementById('tg-chat-frame');
+        let isChatOpen = false;
+
+        // REPLACE THESE WITH YOUR DETAILS
+        const telegramBotToken = 'YOUR_BOT_TOKEN'; // From @BotFather
+        const telegramChatId = 'YOUR_CHAT_ID';     // Your numeric chat ID
+
+        // Construct the widget URL
+        const telegramWidgetUrl = `https://telegram-widget.vercel.app/?bot_token=${telegramBotToken}&chat_id=${telegramChatId}&locale=en&size=380&position=bottom_right`;
+
+        tgBubble.addEventListener('click', () => {
+            if (!isChatOpen) {
+                tgFrame.src = telegramWidgetUrl;
+                tgFrame.style.display = 'block';
+                tgBubble.innerHTML = '<i class="fas fa-times"></i>';
+                tgBubble.style.transform = 'scale(1.1)';
+                isChatOpen = true;
+            } else {
+                tgFrame.style.display = 'none';
+                tgFrame.src = '';
+                tgBubble.innerHTML = '<i class="fab fa-telegram-plane"></i>';
+                tgBubble.style.transform = 'scale(1)';
+                isChatOpen = false;
+            }
+        });
+    </script>
+</body>
+</html>
